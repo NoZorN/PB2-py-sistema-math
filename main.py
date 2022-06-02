@@ -35,7 +35,7 @@ def apskatit_teoriju(temas_indekss: int) -> None:
     input('Uzspiediet ENTER, lai turpinātu...')
 
 
-def aritmetiska_progresija1():
+def arit_prog1():
     punkti_max = 4
     punkti = 0
     print(f'Jūs varat iegūt {punkti_max} punktus par šo uzdevumu.\n')
@@ -51,11 +51,11 @@ def aritmetiska_progresija1():
         print(an, end='; ')
     print('... ir aritmētiskā progresija.')
     print('Uzraksti vispārīgā locekļa formulu!')
-    print('an = a + (n - b) * c\n')
+    print('An = a + (n - b) * c')
     inp_a = input('Ievadiet koeficientu a: ')
     inp_b = input('Ievadiet koeficientu b: ')
     inp_c = input('Ievadiet koeficientu c: ')
-    print(f'Jūsu atbilde an = {inp_a} + (n - {inp_b}) * {inp_c}')
+    print(f'Jūsu atbilde An = {inp_a} + (n - {inp_b}) * {inp_c}')
     print(f'\nAprēķini {n_loceklis}. locekļa vērtību!')
     inp_vert = input('Ievadiet vērtību: ')
 
@@ -70,7 +70,7 @@ def aritmetiska_progresija1():
     return punkti, punkti_max
 
 
-def aritmetiska_progresija2():
+def arit_prog2():
     punkti_max = 3
     punkti = 0
     print(f'Jūs varat iegūt {punkti_max} punktus par šo uzdevumu.\n')
@@ -82,7 +82,7 @@ def aritmetiska_progresija2():
 
     print(f'Trīs skaitļi veido aritmētisko progresiju. Vidējais skaitlis ir {vid},')
     print(f'bet pirmais skaitlis ir {reizes} reizes lielāks par trešo skaitli.')
-    print('Aprēķini pirmo un trešo no šiem skaitļiem!\n')
+    print('Aprēķini pirmo un trešo no šiem skaitļiem!')
     inp_a = input('Ievadiet pirmo skaitli: ')
     inp_a3 = input('Ievadiet trešo skaitli: ')
 
@@ -108,7 +108,7 @@ def aritmetiska_progresija2():
     return punkti, punkti_max
 
 
-def aritmetiska_progresija3():
+def arit_prog3():
     punkti_max = 3
     punkti = 0
     print(f'Jūs varat iegūt {punkti_max} punktus par šo uzdevumu.\n')
@@ -117,24 +117,26 @@ def aritmetiska_progresija3():
     dalamais = randint(2, 10)
     reiz = beigas // dalamais
     beigas_dalas = dalamais * reiz
-    summ = ((dalamais + beigas_dalas) * reiz) / 2
+    summ = int(((dalamais + beigas_dalas) * reiz) / 2)
     
     print(f'Aplūkojam visus naturālos skaitļus, kas dalās ar {dalamais}.')
     print(f'Cik skaitļa {dalamais} dalāmie atrodas intervālā no 1 līdz {beigas}?')
-    print(f'Šajā intervālā ir ... skaitļa {dalamais} dalāmie.\n')
-    inp_reiz = int(input('Ievadiet atbildi: '))
+    print(f'Šajā intervālā ir ... skaitļa {dalamais} dalāmie.')
+    inp_reiz = input('Ievadiet atbildi: ')
+    print()
 
-    print('\nAprēķini šo dalāmo summu!')
-    inp_sum = int(input('Summa ir: '))
-    
-    if inp_reiz == reiz:
+    print('Aprēķini šo dalāmo summu!')
+    inp_sum = input('Summa ir: ')
+
+    if inp_reiz == str(reiz):
         punkti += 1
-    if inp_sum == summ:
+    if inp_sum == str(summ):
         punkti += 2
     return punkti, punkti_max
 
 
-uzdevumi = [[aritmetiska_progresija1, aritmetiska_progresija2, aritmetiska_progresija3]]
+uzdevumi = [[arit_prog1, arit_prog2, arit_prog3]]
+parbaudes_darbi = [[arit_prog1, arit_prog1, arit_prog2, arit_prog2, arit_prog3]]
 
 
 def pildit_uzdevumus(temas_indekss):
@@ -159,13 +161,12 @@ def pildit_parbaudes_darbu(temas_indekss):
     temas_nosaukums = temas[temas_indekss]
     print('Pārbaudes darbs tēmai:', temas_nosaukums)
     if temas_nosaukums == 'Aritmētiskā progresija':
-        uzdevumu_skaits = len(uzdevumi[temas_indekss]) * 2
+        uzdevumu_skaits = len(parbaudes_darbi[temas_indekss])
         punkti = 0
         punkti_max = 0
-        for i in range(uzdevumu_skaits):
-            uzdevuma_indekss = i // 2
-            print(f'\nUzdevums Nr. {i + 1} / {uzdevumu_skaits}')
-            uzdevums = uzdevumi[temas_indekss][uzdevuma_indekss]
+        for parbaudes_darba_indekss in range(uzdevumu_skaits):
+            print(f'\nUzdevums Nr. {parbaudes_darba_indekss + 1} / {uzdevumu_skaits}')
+            uzdevums = parbaudes_darbi[temas_indekss][parbaudes_darba_indekss]
             darba_punkti, darba_punkti_max = uzdevums()
             system('cls')
             print('Pārbaudes darbs tēmai:', temas_nosaukums)
