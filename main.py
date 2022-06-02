@@ -56,34 +56,34 @@ def arit_prog1():
     punkti = 0
     print(f'Jūs varat iegūt {punkti_max} punktus par šo uzdevumu.\n')
 
-    a = randint(0, 20)
-    b = 1
-    c = randint(2, 10)
-    n_loceklis = randint(10, 30)
-    vert = a + (n_loceklis - b) * c
+    sakuma_vertiba = randint(0, 20)
+    konstants = 1
+    solis = randint(2, 10)
+    ntais_loceklis = randint(10, 30)
+    nta_vertiba = sakuma_vertiba + (ntais_loceklis - konstants) * solis
     print('Dota virkne ', end='')
     for n in range(1, 6):
-        an = a + (n - b) * c
+        an = sakuma_vertiba + (n - konstants) * solis
         print(an, end='; ')
     print('... ir aritmētiskā progresija.')
     print('Uzraksti vispārīgā locekļa formulu!')
     print('An = a + (n - b) * c')
     print()
 
-    inp_a = input('Ievadiet koeficientu a: ')
-    inp_b = input('Ievadiet koeficientu b: ')
-    inp_c = input('Ievadiet koeficientu c: ')
-    print(f'Jūsu atbilde An = {inp_a} + (n - {inp_b}) * {inp_c}')
-    print(f'\nAprēķini {n_loceklis}. locekļa vērtību!')
-    inp_vert = input('Ievadiet vērtību: ')
+    inp_sakuma_vertiba = input('Ievadiet sākuma vērtību a: ')
+    inp_konstants = input('Ievadiet konstantu b: ')
+    inp_solis = input('Ievadiet soli c: ')
+    print(f'Jūsu atbilde An = {inp_sakuma_vertiba} + (n - {inp_konstants}) * {inp_solis}')
+    print(f'\nAprēķini {ntais_loceklis}. locekļa vērtību!')
+    inp_nta_vertiba = input('Ievadiet vērtību: ')
 
-    if inp_a == str(a):
+    if inp_sakuma_vertiba == str(sakuma_vertiba):
         punkti += 1
-    if inp_b == str(b):
+    if inp_konstants == str(konstants):
         punkti += 1
-    if inp_c == str(c):
+    if inp_solis == str(solis):
         punkti += 1
-    if inp_vert == str(vert):
+    if inp_nta_vertiba == str(nta_vertiba):
         punkti += 1
     return punkti, punkti_max
 
@@ -93,16 +93,16 @@ def arit_prog2():
     punkti = 0
     print(f'Jūs varat iegūt {punkti_max} punktus par šo uzdevumu.\n')
 
-    reizes = randint(2, 5)
-    a3 = randint(1, 10)
-    a = a3 * reizes
-    vid = (a + a3) / 2
+    reizes_lielaks = randint(2, 5)
+    a_reiz_3 = randint(1, 10)
+    a_reiz_1 = a_reiz_3 * reizes_lielaks
+    a_reiz_2 = (a_reiz_1 + a_reiz_3) / 2
 
-    print(f'Trīs skaitļi veido aritmētisko progresiju. Vidējais skaitlis ir {vid},')
-    print(f'bet pirmais skaitlis ir {reizes} reizes lielāks par trešo skaitli.')
+    print(f'Trīs skaitļi veido aritmētisko progresiju. Vidējais skaitlis ir {a_reiz_2},')
+    print(f'bet pirmais skaitlis ir {reizes_lielaks} reizes lielāks par trešo skaitli.')
     print('Aprēķini pirmo un trešo no šiem skaitļiem!')
-    inp_a = input('Ievadiet pirmo skaitli: ')
-    inp_a3 = input('Ievadiet trešo skaitli: ')
+    inp_a_reiz_1 = input('Ievadiet pirmo progresijas skaitli: ')
+    inp_a_reiz_3 = input('Ievadiet trešo progresijas skaitli: ')
 
     print('\nPapildjautājums')
     print('Kuru no formulām var lietot atbildes iegūšanai?')
@@ -117,9 +117,9 @@ def arit_prog2():
     atbildes_varianti = [str(x + 1) for x in range(4)]
     inp_atbilde = option_choice('Ievadiet atbildes variantu: ', atbildes_varianti)
 
-    if inp_a == str(a):
+    if inp_a_reiz_1 == str(a_reiz_1):
         punkti += 1
-    if inp_a3 == str(a3):
+    if inp_a_reiz_3 == str(a_reiz_3):
         punkti += 1
     if inp_atbilde == pareizais_atbildes_variants:
         punkti += 1
@@ -131,24 +131,24 @@ def arit_prog3():
     punkti = 0
     print(f'Jūs varat iegūt {punkti_max} punktus par šo uzdevumu.\n')
 
-    beigas = 1 + randint(100, 500)
+    intervala_beigas = 1 + randint(100, 500)
     dalamais = randint(2, 10)
-    reiz = beigas // dalamais
-    beigas_dalas = dalamais * reiz
-    summ = int(((dalamais + beigas_dalas) * reiz) / 2)
+    reizes_dalas = intervala_beigas // dalamais
+    beigas_dalas = dalamais * reizes_dalas
+    dalamo_summa = int(((dalamais + beigas_dalas) * reizes_dalas) / 2)
     
     print(f'Aplūkojam visus naturālos skaitļus, kas dalās ar {dalamais}.')
-    print(f'Cik skaitļa {dalamais} dalāmie atrodas intervālā no 1 līdz {beigas}?')
+    print(f'Cik skaitļa {dalamais} dalāmie atrodas intervālā no 1 līdz {intervala_beigas}?')
     print(f'Šajā intervālā ir ... skaitļa {dalamais} dalāmie.')
-    inp_reiz = input('Ievadiet atbildi: ')
+    inp_reizes_dalas = input('Ievadiet atbildi: ')
     print()
 
     print('Aprēķini šo dalāmo summu!')
-    inp_sum = input('Summa ir: ')
+    inp_dalamo_summa = input('Summa ir: ')
 
-    if inp_reiz == str(reiz):
+    if inp_reizes_dalas == str(reizes_dalas):
         punkti += 1
-    if inp_sum == str(summ):
+    if inp_dalamo_summa == str(dalamo_summa):
         punkti += 2
     return punkti, punkti_max
 
