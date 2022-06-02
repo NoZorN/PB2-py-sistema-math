@@ -1,11 +1,17 @@
 """
-matematikas skolotaja parbauda audzeknu zināšanas ar vairākām tēmām
-sistēmā jābut teorija, uzdevumi patstāvīgajam darbam un kontroldarbi
-uzdevums atbilst tēmai divdimensiju masīvs
-jebkurš audzēknis izlasot kodu spēs uztaisīt tādu pašu sistēmu
-uzdevumi.lv
-sākums, tēmas meklēšana - tās teorija, uzdevumi un kontroldarbi
-audzēkņu vērtēšana ballēs
+Repositorija `https://github.com/pikcrvt-students/PB2-py-sistema-math`
+
+Sistēma ar kuras palīdzību skolotāja pārbauda audzēkņu zināšanas
+ar vairākām tēmām(šobrīd vienu), uzdod uzdevumus patstāvigajam
+darbam un kontroldarbus.
+
+Darbā tiek izmantoti divdimensiju masīvi un failu lasīšana.
+Jebkurš izlasot kodu spēs uztaisīt tādu pašu sistēmu.
+
+Iekļautā funkcionalitāte: tēmu izvēle - tās teorija, uzdevumi un
+kontroldarbi, kuri tiek vērtēti ballēs.
+
+Izveidoja: Matīss Božko
 """
 from os import system, path
 from random import randint
