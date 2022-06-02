@@ -1,0 +1,38 @@
+Virkni, kurā katru nākamo locekli iegūst, ja iepriekšējam pieskaita vienu un to pašu skaitli (diferenci d), sauc par aritmētisko progresiju. 
+Aritmētiskās progresijas vispārīgā locekļa formula ir an=a1+(n−1)⋅d.
+Ja izvēlas trīs secīgus virknes locekļus, ir patiesa īpašība:
+an=an−1+an+12
+Piemērs:
+Ja dota aritmētiskā progresija 2; 6; 10; 14; 18; ...., redzam:
+6=2+10214=10+182
+utt. 
+Aritmētiskās progresijas pirmo n locekļu summa ir
+Sn=(a1+an)⋅n2
+Piemērs:
+Taisnleņķa trijstūra īsākā katete ir 6 cm. Aprēķini pārējo malu garumus, ja zināms, ka šī trijstūra malu garumi veido aritmētisko progresiju.
+
+Risinājums:
+Ja d ir aritmētiskās progresijas diference, tad malu garumus var izteikt šādi:
+b=6
+a=6+d
+c=6+2d
+ 
+Taisnleņķa trijstūrim izpildās Pitagora teorēma:
+c2=a2+b2(6+2d)2=(6+d)2+6236+24d+4d2=36+12d+d2+363d2+12d−36=0d2+4d−12=0d1=2d2=−6(neder)
+
+Ja diference ir d=2, tad a=8 cm; c=10 cm.
+(Diference nevar būt negatīva, jo tad hipotenūzas garums būtu negatīvs lielums)
+
+Atbilde: Trijstūra malu garumi ir 6 cm; 8 cm; 10 cm.
+Piemērs:
+Ķermenis brīvā kritiena pirmajā sekundē veic 4,9 m, bet katrā nākamā par 9,8 m vairāk. Aprēķini šahtas dziļumu, ja tas sasniedz tās apakšu pēc 5 sekundēm.
+
+Risinājums:
+Pirmais loceklis a1=4,9 m, diference d=9,8 m, locekļu skaits n=5.
+
+Šahtas dziļums ir katrā no piecām sekundēm veikto attālumu summa.
+ 
+Vispirms jāaprēķina virknes pēdējais loceklis:
+a5=4,9+(5−1)⋅9,8=44,1S5=(a1+a5)⋅52=(4,9+44,1)⋅52=122,5 m
+
+Atbilde: Šahtas dziļums ir 122,5 metri.
