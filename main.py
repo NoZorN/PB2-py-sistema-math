@@ -143,9 +143,10 @@ def pildit_uzdevumus(temas_indekss):
     if temas_nosaukums == "Aritmētiskā progresija":
         uzdevumu_skaits = len(uzdevumi[temas_indekss])
         for uzdevuma_indekss, uzdevums in enumerate(uzdevumi[temas_indekss]):
-            print(f'\n\nUzdevums Nr. {uzdevuma_indekss + 1} / {uzdevumu_skaits}')
+            print(f'\nUzdevums Nr. {uzdevuma_indekss + 1} / {uzdevumu_skaits}')
             punkti, punkti_max = uzdevums()
             system('cls')
+            print('Uzdevumi tēmai:', temas_nosaukums)
             print(f'Jūs ieguvāt {punkti} / {punkti_max} punktus par {uzdevuma_indekss + 1}. uzdevumu!')
     else:
         print(f'\nUzdevumi tēmai {temas_nosaukums} nav izveidoti!')
@@ -154,10 +155,28 @@ def pildit_uzdevumus(temas_indekss):
 
 
 def pildit_parbaudes_darbu(temas_indekss):
+    system('cls')
     temas_nosaukums = temas[temas_indekss]
     print('Pārbaudes darbs tēmai:', temas_nosaukums)
-    if temas_nosaukums == '...':
-        pass
+    if temas_nosaukums == 'Aritmētiskā progresija':
+        uzdevumu_skaits = len(uzdevumi[temas_indekss]) * 2
+        punkti = 0
+        punkti_max = 0
+        for i in range(uzdevumu_skaits):
+            uzdevuma_indekss = i // 2
+            print(f'\nUzdevums Nr. {i + 1} / {uzdevumu_skaits}')
+            uzdevums = uzdevumi[temas_indekss][uzdevuma_indekss]
+            darba_punkti, darba_punkti_max = uzdevums()
+            system('cls')
+            print('Pārbaudes darbs tēmai:', temas_nosaukums)
+            punkti += darba_punkti
+            punkti_max += darba_punkti_max
+        print()
+        balles = round(punkti / punkti_max * 10)
+        if balles < 1:
+            balles = 1
+        print(f'Jūsu vērtējums ballēs ir {balles}')
+        print(f'Iegūtais punktu skaits {punkti} / {punkti_max}')
     else:
         print(f'\n\nPārbaudes darbi tēmai {temas_nosaukums} nav izveidoti!')
     print()
