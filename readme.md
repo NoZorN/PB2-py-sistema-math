@@ -33,4 +33,4 @@ Testēšana...
 ---
 ### Nobeigums
 Aukšupielādēt sistēmu platformā GitHub:
-`github.com/pikcrvt-students/PB2-py-sistema-matematikas_programma`
+`https://github.com/pikcrvt-students/PB2-py-sistema-math`
