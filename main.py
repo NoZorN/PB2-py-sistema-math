@@ -15,7 +15,23 @@ Izveidoja: Matīss Božko
 """
 from os import system, path
 from random import randint
-temas = ['Aritmētiskā progresija', 'Tēma2']
+sistemas_nosaukums = 'Matemātikas Sistēma: Math'
+noklusejuma_temas_nosaukums = 'Tēma1'
+noklusejuma_temas_teorija = 'Tēmas {} teorijas fails...\n'
+
+temas = None
+temu_fails = 'Tēmas.txt'
+teoriju_faili = 'teorija/{}.txt'
+if not path.exists(temu_fails):
+    f = open(temu_fails, 'w', encoding='utf-8')
+    f.write(f'{noklusejuma_temas_nosaukums}\n')
+    f.close()
+    temas = [noklusejuma_temas_nosaukums]
+else:
+    f = open(temu_fails, 'rt', encoding='utf-8')
+    temas = f.read().splitlines()
+    f.close()
+
 temas_izveles = [str(x + 1) for x in range(len(temas) + 1)]
 teorija = []
 
@@ -52,6 +68,8 @@ def arit_prog1():
     print('... ir aritmētiskā progresija.')
     print('Uzraksti vispārīgā locekļa formulu!')
     print('An = a + (n - b) * c')
+    print()
+
     inp_a = input('Ievadiet koeficientu a: ')
     inp_b = input('Ievadiet koeficientu b: ')
     inp_c = input('Ievadiet koeficientu c: ')
@@ -186,10 +204,10 @@ def pildit_parbaudes_darbu(temas_indekss):
 
 print('Notiek teorijas ielāde...')
 for tema in temas:
-    filepath = f'teorija/{tema}.txt'
+    filepath = teoriju_faili.format(tema)
     pievienot_teoriju = None
     if not path.exists(filepath):
-        pievienot_teoriju = f'Tēmas {tema} teorija...'
+        pievienot_teoriju = noklusejuma_temas_teorija.format(tema)
         f = open(filepath, 'w', encoding='utf-8')
         f.write(pievienot_teoriju)
         f.close()
@@ -201,10 +219,10 @@ for tema in temas:
 
 while True:
     system('cls')
-    print('Matemātikas sistēma')
+    print(sistemas_nosaukums)
     for x in range(len(temas)):
         print(f'{x + 1}] {temas[x]}')
-    print(f'{len(temas) + 1}] Iziet')
+    print(f'{len(temas) + 1}] Beigt Darbu')
     print()
 
     option = int(option_choice('Izvēlieties tēmu: ', temas_izveles))
@@ -215,10 +233,10 @@ while True:
     while True:
         system('cls')
         print('Izvēlētā tēma:', temas[temas_indekss])
-        print('1] Apskatīt teoriju')
-        print('2] Pildīt uzdevumus')
-        print('3] Pildīt pārbaudes darbu')
-        print('4] Iziet')
+        print('1] Teoriju')
+        print('2] Uzdevumi')
+        print('3] Pārbaudes Darbs')
+        print('4] Atpakaļ')
         print()
 
         suboption = int(option_choice('Izvēlieties darbību: ', [str(x + 1) for x in range(4)]))
