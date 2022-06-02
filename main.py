@@ -1,5 +1,5 @@
 """
-Repositorija `https://github.com/pikcrvt-students/PB2-py-sistema-math`
+Repozitorijs `https://github.com/pikcrvt-students/PB2-py-sistema-math`
 
 Sistēma ar kuras palīdzību skolotāja pārbauda audzēkņu zināšanas
 ar vairākām tēmām(šobrīd vienu), uzdod uzdevumus patstāvigajam
