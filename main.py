@@ -178,7 +178,7 @@ def pildit_parbaudes_darbu(temas_indekss):
         print(f'Jūsu vērtējums ballēs ir {balles}')
         print(f'Iegūtais punktu skaits {punkti} / {punkti_max}')
     else:
-        print(f'\n\nPārbaudes darbi tēmai {temas_nosaukums} nav izveidoti!')
+        print(f'\nPārbaudes darbi tēmai {temas_nosaukums} nav izveidoti!')
     print()
     input('Uzspiediet ENTER, lai turpinātu...')
 
