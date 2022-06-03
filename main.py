@@ -40,7 +40,7 @@ temas_izveles = temas + ['Beigt Darbu']
 teorija = []
 
 
-def izveles_iespejas_numuretas(prompt: str, options: list) -> str:
+def izveles_iespejas_numuretas(prompt: str, options: list) -> tuple:
     opcijas_izveles_iespejas = []
     for opcijas_indekss, opcija in enumerate(options):
         print(f'{opcijas_indekss + 1}] {opcija}')
@@ -50,7 +50,8 @@ def izveles_iespejas_numuretas(prompt: str, options: list) -> str:
     while True:
         ievade = input(prompt)
         if ievade in opcijas_izveles_iespejas:
-            return ievade
+            ievade = int(ievade)
+            return ievade, options[ievade - 1]
         print('Nederīga ievade!')
 
 
@@ -119,18 +120,19 @@ def arit_prog2() -> tuple:
     print('\nPapildjautājums')
     print('Kuru no formulām var lietot atbildes iegūšanai?')
 
-    pareizais_atbildes_variants = '1'
+    pareizais_atbildes_variants = 'An = (An-1 + An+1) / 2'
     atbildes_varianti = ['An = (An-1 + An+1) / 2',
                          'Sn = (A1 + An)n',
                          'An = An-1 * An+1',
                          'An = A1 - (n + 1)d']
-    inp_atbilde = izveles_iespejas_numuretas('Ievadiet atbildes variantu: ', atbildes_varianti)
+    prompt = 'Ievadiet atbildes varianta skaitli: '
+    izveles_skaitlis, izveles_vertiba = izveles_iespejas_numuretas(prompt, atbildes_varianti)
 
     if inp_a_reiz_1 == str(a_reiz_1):
         punkti += 1
     if inp_a_reiz_3 == str(a_reiz_3):
         punkti += 1
-    if inp_atbilde == pareizais_atbildes_variants:
+    if izveles_vertiba == pareizais_atbildes_variants:
         punkti += 1
     return punkti, punkti_max
 
@@ -222,24 +224,24 @@ for tema in temas:
 while True:
     system('cls')
     print(sistemas_nosaukums)
-    izvele = int(izveles_iespejas_numuretas('Izvēlieties tēmu: ', temas_izveles))
+    izveles_skaitlis, izveles_vertiba = izveles_iespejas_numuretas('Izvēlieties tēmu: ', temas_izveles)
 
-    if izvele == len(temas) + 1:  # Iziet no izvēles
+    if izveles_vertiba == 'Beigt Darbu':  # Iziet no izvēles
         break
 
-    temas_indekss = izvele - 1
+    temas_indekss = izveles_skaitlis - 1
     while True:
         system('cls')
-        print('Izvēlētā tēma:', temas[temas_indekss])
+        print('Izvēlētā tēma:', izveles_vertiba)
         darbibu_izveles = ['Teorija', 'Uzdevumi', 'Pārbaudes Darbs', 'Atpakaļ']
-        suboption = int(izveles_iespejas_numuretas('Izvēlieties darbību: ', darbibu_izveles))
+        izveles_skaitlis2, izveles_nosaukums2 = izveles_iespejas_numuretas('Izvēlieties darbību: ', darbibu_izveles)
 
         system('cls')
-        if suboption == 1:  # Teorijas apskatīšana
+        if izveles_nosaukums2 == 'Teorija':  # Teorijas apskatīšana
             apskatit_teoriju(temas_indekss)
-        elif suboption == 2:  # Uzdevumu pildīšana
+        elif izveles_nosaukums2 == 'Uzdevumi':  # Uzdevumu pildīšana
             pildit_uzdevumus(temas_indekss)
-        elif suboption == 3:  # Pārbaudes darba pildīšana
+        elif izveles_nosaukums2 == 'Pārbaudes Darbs':  # Pārbaudes darba pildīšana
             pildit_parbaudes_darbu(temas_indekss)
-        elif suboption == 4:  # Iziet no izvēles
+        elif izveles_nosaukums2 == 'Atpakaļ':  # Iziet no izvēles
             break
