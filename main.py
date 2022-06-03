@@ -36,6 +36,10 @@ temas_izveles = [str(x + 1) for x in range(len(temas) + 1)]
 teorija = []
 
 
+def test() -> None:
+    pass
+
+
 def option_choice(prompt: str, options: list) -> str:
     while True:
         inp = input(prompt)
