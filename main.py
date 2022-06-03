@@ -51,7 +51,7 @@ def apskatit_teoriju(temas_indekss: int) -> None:
     input('Uzspiediet ENTER, lai turpinātu...')
 
 
-def arit_prog1():
+def arit_prog1() -> tuple:
     punkti_max = 4
     punkti = 0
     print(f'Jūs varat iegūt {punkti_max} punktus par šo uzdevumu.\n')
@@ -88,7 +88,7 @@ def arit_prog1():
     return punkti, punkti_max
 
 
-def arit_prog2():
+def arit_prog2() -> tuple:
     punkti_max = 3
     punkti = 0
     print(f'Jūs varat iegūt {punkti_max} punktus par šo uzdevumu.\n')
@@ -126,7 +126,7 @@ def arit_prog2():
     return punkti, punkti_max
 
 
-def arit_prog3():
+def arit_prog3() -> tuple:
     punkti_max = 3
     punkti = 0
     print(f'Jūs varat iegūt {punkti_max} punktus par šo uzdevumu.\n')
@@ -157,7 +157,7 @@ uzdevumi = [[arit_prog1, arit_prog2, arit_prog3]]
 parbaudes_darbi = [[arit_prog1, arit_prog1, arit_prog2, arit_prog2, arit_prog3]]
 
 
-def pildit_uzdevumus(temas_indekss):
+def pildit_uzdevumus(temas_indekss: int) -> None:
     temas_nosaukums = temas[temas_indekss]
     print('Uzdevumi tēmai:', temas_nosaukums)
     if temas_nosaukums == "Aritmētiskā progresija":
@@ -174,7 +174,7 @@ def pildit_uzdevumus(temas_indekss):
     input('Uzspiediet ENTER, lai turpinātu...')
 
 
-def pildit_parbaudes_darbu(temas_indekss):
+def pildit_parbaudes_darbu(temas_indekss: int) -> None:
     system('cls')
     temas_nosaukums = temas[temas_indekss]
     print('Pārbaudes darbs tēmai:', temas_nosaukums)
