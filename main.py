@@ -36,16 +36,22 @@ def dabut_vai_uztaisit_failu(filepath: str, default_text: str = 'Noklusējuma ge
 
 
 temas = dabut_vai_uztaisit_failu(temu_fails).splitlines()
-temas_izveles = [str(x + 1) for x in range(len(temas) + 1)]
+temas_izveles = temas + ['Beigt Darbu']
 teorija = []
 
 
-def izveles_iespejas(prompt: str, options: list) -> str:
+def izveles_iespejas_numuretas(prompt: str, options: list) -> str:
+    opcijas_izveles_iespejas = []
+    for opcijas_indekss, opcija in enumerate(options):
+        print(f'{opcijas_indekss + 1}] {opcija}')
+        opcijas_izveles_iespejas.append(str(opcijas_indekss + 1))
+    print()
+
     while True:
-        inp = input(prompt)
-        if inp in options:
-            return inp
-        print('Ievades kļūda!')
+        ievade = input(prompt)
+        if ievade in opcijas_izveles_iespejas:
+            return ievade
+        print('Nederīga ievade!')
 
 
 def apskatit_teoriju(temas_indekss: int) -> None:
@@ -114,14 +120,11 @@ def arit_prog2() -> tuple:
     print('Kuru no formulām var lietot atbildes iegūšanai?')
 
     pareizais_atbildes_variants = '1'
-    print('1] An = (An-1 + An+1) / 2')
-    print('2] Sn = (A1 + An)n')
-    print('3] An = An-1 * An+1')
-    print('4] An = A1 - (n + 1)d')
-    print()
-
-    atbildes_varianti = [str(x + 1) for x in range(4)]
-    inp_atbilde = izveles_iespejas('Ievadiet atbildes variantu: ', atbildes_varianti)
+    atbildes_varianti = ['An = (An-1 + An+1) / 2',
+                         'Sn = (A1 + An)n',
+                         'An = An-1 * An+1',
+                         'An = A1 - (n + 1)d']
+    inp_atbilde = izveles_iespejas_numuretas('Ievadiet atbildes variantu: ', atbildes_varianti)
 
     if inp_a_reiz_1 == str(a_reiz_1):
         punkti += 1
@@ -219,26 +222,17 @@ for tema in temas:
 while True:
     system('cls')
     print(sistemas_nosaukums)
-    for x in range(len(temas)):
-        print(f'{x + 1}] {temas[x]}')
-    print(f'{len(temas) + 1}] Beigt Darbu')
-    print()
+    izvele = int(izveles_iespejas_numuretas('Izvēlieties tēmu: ', temas_izveles))
 
-    option = int(izveles_iespejas('Izvēlieties tēmu: ', temas_izveles))
-    if option == len(temas) + 1:  # Iziet no izvēles
+    if izvele == len(temas) + 1:  # Iziet no izvēles
         break
 
-    temas_indekss = option - 1
+    temas_indekss = izvele - 1
     while True:
         system('cls')
         print('Izvēlētā tēma:', temas[temas_indekss])
-        print('1] Teorija')
-        print('2] Uzdevumi')
-        print('3] Pārbaudes Darbs')
-        print('4] Atpakaļ')
-        print()
-
-        suboption = int(izveles_iespejas('Izvēlieties darbību: ', [str(x + 1) for x in range(4)]))
+        darbibu_izveles = ['Teorija', 'Uzdevumi', 'Pārbaudes Darbs', 'Atpakaļ']
+        suboption = int(izveles_iespejas_numuretas('Izvēlieties darbību: ', darbibu_izveles))
 
         system('cls')
         if suboption == 1:  # Teorijas apskatīšana
