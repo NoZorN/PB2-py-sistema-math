@@ -13,14 +13,14 @@ kontroldarbi, kuri tiek vērtēti ballēs.
 
 Izveidoja: Matīss Božko
 """
-from os import system, path
+from os import system, path, mkdir
 from random import randint
 sistemas_nosaukums = 'Matemātikas Sistēma: Math'
 noklusejuma_temas_nosaukums = 'Tēma1'
 noklusejuma_temas_teorija = 'Tēmas {} teorijas fails...\n'
 
 temu_fails = 'tēmas.txt'
-teoriju_faili = 'teorija/{}.txt'
+teorijas_mape = 'teorija'
 
 
 def dabut_vai_uztaisit_failu(filepath: str, default_text: str = 'Noklusējuma get_file teksts\n') -> str:
@@ -217,8 +217,12 @@ def pildit_parbaudes_darbu(temas_indekss: int) -> None:
 
 
 print('Notiek teorijas ielāde...')
-for tema in temas:
-    pievienot_teoriju = dabut_vai_uztaisit_failu(teoriju_faili.format(tema), noklusejuma_temas_teorija.format(tema))
+if not path.exists(teorijas_mape):
+    mkdir(teorijas_mape)
+for temas_nosaukums in temas:
+    teorijas_fails = f'{teorijas_mape}/{temas_nosaukums}.txt'
+    noklusejuma_teorija = noklusejuma_temas_teorija.format(temas_nosaukums)
+    pievienot_teoriju = dabut_vai_uztaisit_failu(teorijas_fails, noklusejuma_teorija)
     teorija.append(pievienot_teoriju)
 
 while True:
