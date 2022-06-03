@@ -19,25 +19,25 @@ sistemas_nosaukums = 'Matemātikas Sistēma: Math'
 noklusejuma_temas_nosaukums = 'Tēma1'
 noklusejuma_temas_teorija = 'Tēmas {} teorijas fails...\n'
 
-temas = None
 temu_fails = 'Tēmas.txt'
 teoriju_faili = 'teorija/{}.txt'
-if not path.exists(temu_fails):
-    f = open(temu_fails, 'w', encoding='utf-8')
-    f.write(f'{noklusejuma_temas_nosaukums}\n')
-    f.close()
-    temas = [noklusejuma_temas_nosaukums]
-else:
-    f = open(temu_fails, 'rt', encoding='utf-8')
-    temas = f.read().splitlines()
-    f.close()
 
+
+def get_file(filepath: str, default_text: str = 'Noklusējuma get_file teksts\n') -> str:
+    if not path.exists(filepath):
+        f = open(filepath, 'w', encoding='utf-8')
+        f.write(default_text)
+        f.close()
+        return default_text
+    f = open(temu_fails, 'rt', encoding='utf-8')
+    text = f.read()
+    f.close()
+    return text
+
+
+temas = get_file(temu_fails).splitlines()
 temas_izveles = [str(x + 1) for x in range(len(temas) + 1)]
 teorija = []
-
-
-def test() -> None:
-    pass
 
 
 def option_choice(prompt: str, options: list) -> str:
@@ -237,7 +237,7 @@ while True:
     while True:
         system('cls')
         print('Izvēlētā tēma:', temas[temas_indekss])
-        print('1] Teoriju')
+        print('1] Teorija')
         print('2] Uzdevumi')
         print('3] Pārbaudes Darbs')
         print('4] Atpakaļ')
