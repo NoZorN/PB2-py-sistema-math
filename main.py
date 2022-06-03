@@ -29,7 +29,7 @@ def get_file(filepath: str, default_text: str = 'Noklusējuma get_file teksts\n'
         f.write(default_text)
         f.close()
         return default_text
-    f = open(temu_fails, 'rt', encoding='utf-8')
+    f = open(filepath, 'rt', encoding='utf-8')
     text = f.read()
     f.close()
     return text
@@ -208,17 +208,7 @@ def pildit_parbaudes_darbu(temas_indekss: int) -> None:
 
 print('Notiek teorijas ielāde...')
 for tema in temas:
-    filepath = teoriju_faili.format(tema)
-    pievienot_teoriju = None
-    if not path.exists(filepath):
-        pievienot_teoriju = noklusejuma_temas_teorija.format(tema)
-        f = open(filepath, 'w', encoding='utf-8')
-        f.write(pievienot_teoriju)
-        f.close()
-    else:
-        f = open(filepath, 'rt', encoding='utf-8')
-        pievienot_teoriju = f.read()
-        f.close()
+    pievienot_teoriju = get_file(teoriju_faili.format(tema), noklusejuma_temas_teorija.format(tema))
     teorija.append(pievienot_teoriju)
 
 while True:
