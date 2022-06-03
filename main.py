@@ -23,7 +23,7 @@ temu_fails = 'tēmas.txt'
 teoriju_faili = 'teorija/{}.txt'
 
 
-def get_file(filepath: str, default_text: str = 'Noklusējuma get_file teksts\n') -> str:
+def dabut_vai_uztaisit_failu(filepath: str, default_text: str = 'Noklusējuma get_file teksts\n') -> str:
     if not path.exists(filepath):
         f = open(filepath, 'w', encoding='utf-8')
         f.write(default_text)
@@ -35,12 +35,12 @@ def get_file(filepath: str, default_text: str = 'Noklusējuma get_file teksts\n'
     return text
 
 
-temas = get_file(temu_fails).splitlines()
+temas = dabut_vai_uztaisit_failu(temu_fails).splitlines()
 temas_izveles = [str(x + 1) for x in range(len(temas) + 1)]
 teorija = []
 
 
-def option_choice(prompt: str, options: list) -> str:
+def izveles_iespejas(prompt: str, options: list) -> str:
     while True:
         inp = input(prompt)
         if inp in options:
@@ -61,32 +61,28 @@ def arit_prog1() -> tuple:
     print(f'Jūs varat iegūt {punkti_max} punktus par šo uzdevumu.\n')
 
     sakuma_vertiba = randint(0, 20)
-    konstants = 1
     solis = randint(2, 10)
     ntais_loceklis = randint(10, 30)
-    nta_vertiba = sakuma_vertiba + (ntais_loceklis - konstants) * solis
+    nta_vertiba = sakuma_vertiba + (ntais_loceklis - 1) * solis
     print('Dota virkne ', end='')
     for n in range(1, 6):
-        an = sakuma_vertiba + (n - konstants) * solis
+        an = sakuma_vertiba + (n - 1) * solis
         print(an, end='; ')
     print('... ir aritmētiskā progresija.')
     print('Uzraksti vispārīgā locekļa formulu!')
-    print('An = a + (n - b) * c')
+    print('An = A1 + (n - 1) * d')
     print()
 
-    inp_sakuma_vertiba = input('Ievadiet sākuma vērtību a: ')
-    inp_konstants = input('Ievadiet konstantu b: ')
-    inp_solis = input('Ievadiet soli c: ')
-    print(f'Jūsu atbilde An = {inp_sakuma_vertiba} + (n - {inp_konstants}) * {inp_solis}')
+    inp_sakuma_vertiba = input(f'(Ievadiet sākuma vērtību A1)\tAn = ')
+    inp_solis = input(f'(Ievadiet differenci d)\t\tAn = {inp_sakuma_vertiba} + (n - 1) * ')
+    print(f'Jūsu atbilde ir An = {inp_sakuma_vertiba} + (n - 1) * {inp_solis}')
     print(f'\nAprēķini {ntais_loceklis}. locekļa vērtību!')
     inp_nta_vertiba = input('Ievadiet vērtību: ')
 
     if inp_sakuma_vertiba == str(sakuma_vertiba):
         punkti += 1
-    if inp_konstants == str(konstants):
-        punkti += 1
     if inp_solis == str(solis):
-        punkti += 1
+        punkti += 2
     if inp_nta_vertiba == str(nta_vertiba):
         punkti += 1
     return punkti, punkti_max
@@ -101,12 +97,18 @@ def arit_prog2() -> tuple:
     a_reiz_3 = randint(1, 10)
     a_reiz_1 = a_reiz_3 * reizes_lielaks
     a_reiz_2 = (a_reiz_1 + a_reiz_3) / 2
+    if a_reiz_2.is_integer():
+        a_reiz_2 = int(a_reiz_2)
 
     print(f'Trīs skaitļi veido aritmētisko progresiju. Vidējais skaitlis ir {a_reiz_2},')
     print(f'bet pirmais skaitlis ir {reizes_lielaks} reizes lielāks par trešo skaitli.')
     print('Aprēķini pirmo un trešo no šiem skaitļiem!')
-    inp_a_reiz_1 = input('Ievadiet pirmo progresijas skaitli: ')
-    inp_a_reiz_3 = input('Ievadiet trešo progresijas skaitli: ')
+    print(f'A1 {a_reiz_2} A3')
+    print()
+
+    inp_a_reiz_1 = input(f'(Ievadiet pirmo progresijas skaitli) ')
+    inp_a_reiz_3 = input(f'(Ievadiet trešo progresijas skaitli) {inp_a_reiz_1} {a_reiz_2} ')
+    print(f'Jūsu atbilde ir {inp_a_reiz_1} {a_reiz_2} {inp_a_reiz_3}')
 
     print('\nPapildjautājums')
     print('Kuru no formulām var lietot atbildes iegūšanai?')
@@ -119,7 +121,7 @@ def arit_prog2() -> tuple:
     print()
 
     atbildes_varianti = [str(x + 1) for x in range(4)]
-    inp_atbilde = option_choice('Ievadiet atbildes variantu: ', atbildes_varianti)
+    inp_atbilde = izveles_iespejas('Ievadiet atbildes variantu: ', atbildes_varianti)
 
     if inp_a_reiz_1 == str(a_reiz_1):
         punkti += 1
@@ -166,12 +168,15 @@ def pildit_uzdevumus(temas_indekss: int) -> None:
     print('Uzdevumi tēmai:', temas_nosaukums)
     if temas_nosaukums == "Aritmētiskā progresija":
         uzdevumu_skaits = len(uzdevumi[temas_indekss])
+        punkti = 0
+        punkti_max = 0
         for uzdevuma_indekss, uzdevums in enumerate(uzdevumi[temas_indekss]):
             print(f'\nUzdevums Nr. {uzdevuma_indekss + 1} / {uzdevumu_skaits}')
             punkti, punkti_max = uzdevums()
             system('cls')
             print('Uzdevumi tēmai:', temas_nosaukums)
             print(f'Jūs ieguvāt {punkti} / {punkti_max} punktus par {uzdevuma_indekss + 1}. uzdevumu!')
+        print(f'Iegūtais punktu skaits par visiem uzdevumiem {punkti} / {punkti_max}')
     else:
         print(f'\nUzdevumi tēmai {temas_nosaukums} nav izveidoti!')
     print()
@@ -208,7 +213,7 @@ def pildit_parbaudes_darbu(temas_indekss: int) -> None:
 
 print('Notiek teorijas ielāde...')
 for tema in temas:
-    pievienot_teoriju = get_file(teoriju_faili.format(tema), noklusejuma_temas_teorija.format(tema))
+    pievienot_teoriju = dabut_vai_uztaisit_failu(teoriju_faili.format(tema), noklusejuma_temas_teorija.format(tema))
     teorija.append(pievienot_teoriju)
 
 while True:
@@ -219,7 +224,7 @@ while True:
     print(f'{len(temas) + 1}] Beigt Darbu')
     print()
 
-    option = int(option_choice('Izvēlieties tēmu: ', temas_izveles))
+    option = int(izveles_iespejas('Izvēlieties tēmu: ', temas_izveles))
     if option == len(temas) + 1:  # Iziet no izvēles
         break
 
@@ -233,7 +238,7 @@ while True:
         print('4] Atpakaļ')
         print()
 
-        suboption = int(option_choice('Izvēlieties darbību: ', [str(x + 1) for x in range(4)]))
+        suboption = int(izveles_iespejas('Izvēlieties darbību: ', [str(x + 1) for x in range(4)]))
 
         system('cls')
         if suboption == 1:  # Teorijas apskatīšana
