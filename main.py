@@ -19,7 +19,7 @@ sistemas_nosaukums = 'Matemātikas Sistēma: Math'
 noklusejuma_temas_nosaukums = 'Tēma1'
 noklusejuma_temas_teorija = 'Tēmas {} teorijas fails...\n'
 
-temu_fails = 'Tēmas.txt'
+temu_fails = 'tēmas.txt'
 teoriju_faili = 'teorija/{}.txt'
 
 
